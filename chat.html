@@ -1,0 +1,47 @@
+<html><body id="loader"> <input type='text' id='page' value='86489'></input> -starting post# <input id="b1" type="button" value="load" onclick="set()"></input><input id="b2" type="button" value="stop" onclick="brake()"></input>
+<script>
+var brke=0;
+function brake()
+{
+brke=1;
+document.getElementById("b2").disabled=true;
+document.getElementById("b1").disabled=false;
+}
+function set()
+{
+ubc=document.getElementById('page').value;
+document.getElementById("b2").disabled=false;
+document.getElementById("b1").disabled=true;
+loadme();
+}
+function go()
+ {
+setTimeout(loadme, 200); 
+}
+
+var ubc =86489;
+ function loadme() {
+      var sc = document.createElement('script');
+   sc.setAttribute("id", ""+ubc+"");
+sc.setAttribute('type', 'text/javascript');
+    sc.setAttribute('data-telegram-post','Bitminuteschat/'+ubc+'');
+    sc.setAttribute('data-width','100%');
+   sc.setAttribute('src', 'https://telegram.org/js/telegram-widget.js?5');
+
+document.getElementById('loader').appendChild(sc);    
+
+ubc++;
+if (brke!=1) {
+go();
+}
+else {
+brke=0;
+}
+return;
+}
+document.getElementById("b2").disabled=true;
+
+
+
+</script>
+
