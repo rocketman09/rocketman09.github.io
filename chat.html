@@ -28,8 +28,11 @@ xhttp.onreadystatechange = function() {
     bad=1;   
     }
 };
-xhttp.open("GET", "t.me/Bitminuteschat/"+ubc+"", true);
-xhttp.send();
+xhttp.open("GET", "t.me/Bitminuteschat/"+ubc+"?embed=1", true);
+if (!xhttp.send())
+    {
+    bad=1;
+    }
   if (bad==0){
   var sc = document.createElement('script');
    sc.setAttribute("id", ""+ubc+"");
