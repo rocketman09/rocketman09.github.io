@@ -22,17 +22,14 @@ setTimeout(loadme, 300);
 var ubc =86489;
  function loadme() {
 var bad=0;
-  var iframe = document.createElement("iframe");
-iframe.name=""+ubc+"";
-iframe.src = "t.me/Bitminuteschat/"+ubc+"";
-iframe.onload = function() {
- var iframehtm = iframe.contentDocument || iframe.contentWindow.document;
- if (iframehtm.body.indexOf("Post not found")){
- bad=1;  }  
- this.parentNode.removeChild(this);    
+ var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+    if (!this.readyState == 4 && this.status == 200) {
+    bad=1;   
+    }
 };
-
-document.body.appendChild(iframe);
+xhttp.open("GET", "t.me/Bitminuteschat/"+ubc+"", true);
+xhttp.send();
   if (bad==0){
   var sc = document.createElement('script');
    sc.setAttribute("id", ""+ubc+"");
