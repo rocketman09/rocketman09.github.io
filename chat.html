@@ -28,9 +28,9 @@ sc.setAttribute('type', 'text/javascript');
     sc.setAttribute('data-width','100%');
    sc.setAttribute('src', 'https://telegram.org/js/telegram-widget.js?5');
 sc.setAttribute('async', 'true');
-
+if (!sc.indexOf("Post not found")){
 document.getElementById('loader').appendChild(sc);    
-
+}
 ubc++;
 if (brke!=1) {
 go();
