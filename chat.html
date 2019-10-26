@@ -1,4 +1,4 @@
-<html><body id="loader"> <input type='text' id='page' value='150000'></input> -starting post# <input id="b1" type="button" value="load" onclick="set()"></input><input id="b2" type="button" value="stop" onclick="brake()"></input>
+<html><body id="loader"><div id="test"> </div><input type='text' id='page' value='150000'></input> -starting post# <input id="b1" type="button" value="load" onclick="set()"></input><input id="b2" type="button" value="stop" onclick="brake()"></input>
 <script>
 var brke=0;
 function brake()
@@ -28,9 +28,11 @@ sc.setAttribute('type', 'text/javascript');
     sc.setAttribute('data-width','100%');
    sc.setAttribute('src', 'https://telegram.org/js/telegram-widget.js?5');
 sc.setAttribute('async', 'true');
-if (!sc.indexOf("Post not found")){
+document.getElementById('test').appendChild(sc);
+if (!document.getElementById('test').indexOf("Post not found")){
 document.getElementById('loader').appendChild(sc);    
 }
+document.getElementById('test').inneHTML="";
 ubc++;
 if (brke!=1) {
 go();
