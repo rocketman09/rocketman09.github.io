@@ -1,60 +1,59 @@
-<html><body id="loader"><div id="test"> </div><input type='text' id='page' value='120000'></input> -starting post# <input id="b1" type="button" value="load" onclick="set()"></input><input id="b2" type="button" value="stop" onclick="brake()"></input>
+<html><body><input type='text' id='page' value='110000'></input>-current message number<br><input type='text' id='pagel' value='10'></input> -number of entries per page <br><input id="b1" type="button" value="back" onclick="back()"></input><input id="b2" type="button" value="next" onclick="next()"></input><div id="loader"></div>
 <script>
-var brke=0;
-function brake()
+var ubc=0;
+var screenc=10;
+var entries=0;
+function next()
 {
-brke=1;
-document.getElementById("b2").disabled=true;
-document.getElementById("b1").disabled=false;
-}
-function set()
-{
-ubc=document.getElementById('page').value;
-document.getElementById("b2").disabled=false;
-document.getElementById("b1").disabled=true;
+ ubc=document.getElementById('page').value;
+ screenc=document.getElementById('pagel').value;
+document.getElementById('loader').innerHTML="";
 loadme();
 }
-function go()
- {
-setTimeout(loadme, 200); 
+function back()
+{
+document.getElementById('loader').innerHTML="";
+ubc=document.getElementById('page').value;
+screenc=document.getElementById('pagel').value;
+ubc=ubc-screenc;
+if (ubc <= 1)
+{
+ubc=1;
 }
 
-var ubc =120000;
- function loadme() {
-var bad=0;
- var xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
-    if (!this.readyState == 4 && this.status == 200) {
-    bad=1;   
-    }
-};
-xhttp.open("GET", "https://t.me/Bitminuteschat/"+ubc+"?embed=1", true);
-if (!xhttp.send())
-    {
-    bad=1;
-    }
-  if (bad==0){
-  var sc = document.createElement('script');
-   sc.setAttribute("id", ""+ubc+"");
+loadme();
+
+}
+
+function go()
+ {
+ entries++;
+  if (entries >= screenc)
+{
+  entries=0;
+  }
+else 
+{
+ setTimeout(loadme, 300); 
+}
+ 
+
+}
+function loadme() {
+var sc = document.createElement('script');
+ sc.setAttribute("id", ""+ubc+"");
 sc.setAttribute('type', 'text/javascript');
     sc.setAttribute('data-telegram-post','Bitminuteschat/'+ubc+'');
     sc.setAttribute('data-width','100%');
    sc.setAttribute('src', 'https://telegram.org/js/telegram-widget.js?7');
 sc.setAttribute('async', 'true');
 document.getElementById('loader').appendChild(sc);   
-  }
 ubc++;
-if (brke!=1) {
+document.getElementById('page').value=ubc;
+
 go();
 }
-else {
-brke=0;
-}
-return;
-}
-document.getElementById("b2").disabled=true;
 
 
 
 </script>
-
